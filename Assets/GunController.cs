@@ -14,9 +14,9 @@ public class GunController : MonoBehaviour
     public LineRenderer lineRenderer; 
 
     [Header("Звуки пушки")]
-    public AudioClip weakShootSound;   // Перетащи сюда звук 1
-    public AudioClip mediumShootSound; // Перетащи сюда звук 2
-    public AudioClip strongShootSound; // Перетащи сюда звук 3
+    public AudioClip weakShootSound;  
+    public AudioClip mediumShootSound; 
+    public AudioClip strongShootSound; 
 
     [Header("Цвета режимов")]
     public Color weakColor = Color.green;
@@ -25,11 +25,11 @@ public class GunController : MonoBehaviour
 
     private int currentMode = 0; 
     private Camera playerCamera;
-    private AudioSource audioSource; // Компонент звука
+    private AudioSource audioSource; 
     
     private string[] modeNames = { "Слабая", "Средняя", "Сильная" };
     private Color[] modeColors;
-    private AudioClip[] shootSounds; // Массив звуков для удобства
+    private AudioClip[] shootSounds; 
 
     void Start()
     {
@@ -37,7 +37,6 @@ public class GunController : MonoBehaviour
         modeColors = new Color[] { weakColor, mediumColor, strongColor };
         shootSounds = new AudioClip[] { weakShootSound, mediumShootSound, strongShootSound };
         
-        // Получаем компонент звука
         audioSource = GetComponent<AudioSource>();
         lineRenderer.enabled = false; 
         UpdateUI();
@@ -69,11 +68,10 @@ public class GunController : MonoBehaviour
         {
             if (shootSounds[currentMode] != null)
             {
-                audioSource.PlayOneShot(shootSounds[currentMode]); // Воспроизводим звук текущего режима
+                audioSource.PlayOneShot(shootSounds[currentMode]); 
             }
         }
 
-        // Сам луч рисуется, пока кнопка УДЕРЖИВАЕТСЯ (GetMouseButton)
         if (Input.GetMouseButton(0))
         {
             Ray ray = playerCamera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
