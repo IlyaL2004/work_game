@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject winPanel;
 
     [Header("Настройки Экономики")]
-    public GroundHealth groundHealth; // Сюда перетащим землю!
-    public GameObject zonePrefab;      // Сюда перетащим префаб BonusZone!
+    public GroundHealth groundHealth;
+    public GameObject zonePrefab;     
 
     private int score = 0;
     public int money = 0;
@@ -29,18 +29,16 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        zoneTimer = zoneSpawnTime; // Даем 45 сек перед первой зоной
+        zoneTimer = zoneSpawnTime;
     }
 
     void Update()
     {
-        // Покупка жизней на клавишу "4"
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             TryBuyHeal();
         }
 
-        // Таймер спавна зоны
         zoneTimer -= Time.deltaTime;
         if (zoneTimer <= 0f)
         {
@@ -73,7 +71,6 @@ public class GameManager : MonoBehaviour
             money -= healCost;
             moneyText.text = "Энергия: " + money + " / " + winAmount;
             
-            // Лечим площадку
             if (groundHealth != null)
             {
                 groundHealth.HealHp(healAmount);
@@ -84,7 +81,7 @@ public class GameManager : MonoBehaviour
     void SpawnZone()
     {
         Vector3 randomPos = Random.insideUnitSphere * 8f;
-        randomPos.y = 1.5f; // Зона теперь будет появляться на уровне пояса игрока
+        randomPos.y = 1.5f;
         Instantiate(zonePrefab, randomPos, Quaternion.identity);
     }
 
@@ -108,14 +105,13 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Game");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
         public void GoToMainMenu()
     {
-        Time.timeScale = 1f; // Возвращаем время из паузы
-        Cursor.lockState = CursorLockMode.None; // Показываем курсор
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None; 
         Cursor.visible = true;
-        SceneManager.LoadScene("MainMenu"); // Загружаем сцену меню
+        SceneManager.LoadScene("MainMenu"); 
     }
 }
