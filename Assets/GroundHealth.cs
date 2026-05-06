@@ -43,14 +43,13 @@ public class GroundHealth : MonoBehaviour
             if (meteor.size == MeteorMovement.MeteorSize.Medium) damage = 3;
             if (meteor.size == MeteorMovement.MeteorSize.Large) damage = 4;
 
-            // Узнаем точку, куда метеорит ударился об землю
+           
             Vector3 hitPoint = collision.contacts[0].point;
-            // Считаем расстояние от точки удара до центра карты (0,0,0)
             float distanceFromCenter = hitPoint.magnitude;
 
             if (distanceFromCenter < 3f)
             {
-                damage = 100; // Мгновенная смерть
+                damage = 100; 
             }
 
             TakeDamage(damage);
