@@ -5,10 +5,8 @@ public class MainMenuController : MonoBehaviour
 {
     public string gameSceneName = "Game"; 
 
-    // Вызывается до того, как что-либо появится на экране
     void Awake()
     {
-        // ЖЕЛЕЗОБЕТОННЫЙ ФИКС: Возвращаем время в норму!
         Time.timeScale = 1f; 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
